@@ -1,7 +1,7 @@
 module "network" {
   source = "./modules/network"
 
-  name               = "yiro"
+  name               = "yiro-network"
   vpc_cidr           = "10.0.0.0/16"
   availability_zones = ["us-east-1a", "us-east-1b"]
 
@@ -16,7 +16,9 @@ module "network" {
   ]
 }
 
-# module "alb" {
-#   source = "./modules/alb"
-#
-# }
+module "alb" {
+  source         = "./modules/alb"
+  name           = "yiro-alb"
+  vpc_id         = module.network.vpc_id
+  public-subnets = module.network.public_subnets_id
+}

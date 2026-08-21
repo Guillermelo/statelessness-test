@@ -1,0 +1,13 @@
+variable "name" {
+  type = string
+}
+variable "vpc_id" {
+  type = string
+}
+variable "public-subnets" {
+  type = list(string)
+}
+variable "backend_port" {
+  type    = number
+  default = 3000
+}
